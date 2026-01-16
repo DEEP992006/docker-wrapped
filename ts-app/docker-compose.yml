@@ -1,0 +1,21 @@
+name: deep-image
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: backend
+    ports:
+      - "8000:8000"
+  db:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: example
+    ports:
+    - "5432:5432"
+  redis:
+    image: redis:7-alpine
+    ports:
+    - "6379:6379"
+  
