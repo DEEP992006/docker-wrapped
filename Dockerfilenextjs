@@ -1,0 +1,18 @@
+FROM node:20-alpine
+RUN npm --version
+WORKDIR /home
+COPY db/ db/
+COPY app/ app/
+COPY drizzle.config.ts .
+COPY eslint.config.mjs .
+COPY index.ts .
+COPY next.config.ts .
+COPY package.json .
+COPY pnpm*.yaml .
+COPY postcss.config.mjs .
+COPY proxy.ts .
+COPY tsconfig.json .
+
+RUN npm i -g pnpm && pnpm i
+
+CMD ["pnpm","dev"]
