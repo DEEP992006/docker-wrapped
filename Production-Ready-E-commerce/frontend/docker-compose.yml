@@ -1,0 +1,21 @@
+name: ecom
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ecom-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - NEXT_PUBLIC_API_URL=http://localhost:8080
+    volumes:
+      - .:/app
+      - /app/node_modules
+    networks:
+      - ecom-network
+
+networks:
+  ecom-network:
+    external: true
